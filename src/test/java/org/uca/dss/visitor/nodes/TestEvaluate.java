@@ -55,6 +55,7 @@ public class TestEvaluate {
 		Variable x = new Variable("x");
 		Variable y = new Variable("y");
 		Constant c_1 = new Constant(1);
+		Constant c_2 = new Constant(2);
 		Constant c_3 = new Constant(3);
 		
 		op = new Operator(c_1, '+', c_3);
@@ -69,6 +70,8 @@ public class TestEvaluate {
 		assertEquals(op.evaluate(values), -2.0, epsilon);
 		op = new Operator(x, '*', y);
 		assertEquals(op.evaluate(values), 3.0, epsilon);
+		op = new Operator(c_2, '*', y);
+		assertEquals(op.evaluate(values), 6.0, epsilon);
 		op = new Operator(x, '/', y);
 		assertEquals(op.evaluate(values), 0.33333333333, epsilon);
 	}
