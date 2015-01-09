@@ -23,8 +23,6 @@ public class Variable extends Terminal {
 		}
 	}
 
-	public Expression derivate() {
-		return new Constant(1);
-	}
+		
 
 }

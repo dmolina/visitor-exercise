@@ -13,10 +13,6 @@ public class Constant extends Terminal {
 		return value;
 	}
 
-	public Expression derivate() {
-		return new Constant(0);
-	}
-	
 	@Override
 	public String toString() {
 		return Double.toString(value);

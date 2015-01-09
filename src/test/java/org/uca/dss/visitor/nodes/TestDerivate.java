@@ -14,6 +14,7 @@ public class TestDerivate {
 	private Variable x;
 	private Map<String,Double> values;
 	private Map<String,Double> novalues;
+	private Derivate derivate;
 	
 	@Before
 	public void init() {
@@ -22,19 +23,23 @@ public class TestDerivate {
 		novalues = new HashMap<String, Double>();
 		values = new HashMap<String, Double>();
 		values.put("x", 1.0);
+		derivate = new Derivate();
+	}
+	private Expression derivate(Expression exp) {
+		return derivate.apply(exp);
 	}
 	@Test
 	public void testConstant() {
 		for (int i = 1; i <= 10; i++) {
 			double value = random.randDouble();			
-			assertEquals(new Constant(value).derivate().toString(), "0.0");
+			assertEquals(derivate(new Constant(value)).toString(), "0.0");
 		}
 	}
 	
 	@Test
 	public void testVariable() {
 		Variable x = new Variable("x");
-		assertEquals(x.derivate().toString(), "1.0");
+		assertEquals(derivate(x).toString(), "1.0");
 	}
 	
 	@Test
@@ -47,12 +52,12 @@ public class TestDerivate {
 		Expression op;
 		
 		op = new Operator(c_1, '+', c_2);
-		assertEquals(op.derivate().toString(), "0.0 + 0.0");
+		assertEquals(derivate(op).toString(), "0.0 + 0.0");
 		op = new Operator(x, '+', c_2);
-		assertEquals(op.derivate().toString(), "1.0 + 0.0");
+		assertEquals(derivate(op).toString(), "1.0 + 0.0");
 		op = new Operator(c_3, '*', x);
-		assertEquals(op.derivate().toString(), "0.0 * x + 3.0 * 1.0");
-		assertEquals(3.0, op.derivate().evaluate(values), epsilon);
+		assertEquals(derivate(op).toString(), "0.0 * x + 3.0 * 1.0");
+		assertEquals(3.0, derivate(op).evaluate(values), epsilon);
 	}
 
 }

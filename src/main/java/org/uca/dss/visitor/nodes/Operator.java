@@ -48,31 +48,16 @@ public class Operator implements Expression {
 				operador2.toString());
 	}
 
-	public Expression derivate() {
-		Expression value1, value2;
+	public Expression getOperador1() {
+		return operador1;
+	}
 
-		value1 = this.operador1.derivate();
-		value2 = this.operador2.derivate();
-		
-		if (op == '+' || op == '-') {
-			return new Operator(value1, op, value2);
-		}
-		else if (op == '*') {
-			return new Operator(
-					new Operator(value1, op, operador2),
-					'+', 
-					new Operator(operador1, op, value2)
-					);
-		}
-		else {
-			return new Operator(
-					new Operator(
-							new Operator(value1, '*', operador2), 
-							'-', new Operator(operador1, '*', value2)),
-					'/', 
-					new Operator(value2, '*', value2)
-					);
-		}
+	public Expression getOperador2() {
+		return operador2;
+	}
+
+	public char getOp() {
+		return op;
 	}
 
 }

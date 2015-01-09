@@ -10,6 +10,6 @@ import java.util.Map;
 public interface Expression extends Cloneable {
 	String toString();
 	double evaluate(Map<String,Double> values) throws VariableUndefined;
-	Expression derivate();
+//	Expression derivate();
 //	Expression operate(ExpressionOperation action);
 }
